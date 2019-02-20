@@ -120,9 +120,9 @@ Advantages:
 If your data have weird covariance structure that somehow would mess up an SVD-based method, this method is not so affected.
 You enforce in advance how many dimensions you want to express the data in, so you never run into a situation with highly multicollinear data where doing SVD may explain the variance equally distributed amongst many axes.
 Disadvantages:
-This method is not guaranteed a unique solution (so make sure you seed your random seed before you run and MDS algorithm to reproduce!)
+This method is not guaranteed a unique solution (so make sure you seed your random seed before you run an MDS algorithm to reproduce!)
 The output coordinates do not provide any additional summarizing information about the data apart from their pairwise distances, so the coordinates are a poor choice for further modeling/interpretation. Along these lines, if your data have any outliers, they will strongly influence the entire NMDS, and may make points that are pretty far apart in distance space look closer in NMDS coordinate space by comparison to their mutual distance from the outlier. 
-The method is very sensitive to which distance metric you use, so choose carefully! Along these lines, although Bray-Curtis dissimilarity is extensively used in ordinations (both PCoA and NMDS) in microbial ecology, and is very interpretable, this index is not recommended for statistical ordination.
+The method is very sensitive to which distance metric you use, so choose carefully! Along these lines, although Bray-Curtis dissimilarity is extensively used in ordinations (both PCoA and NMDS) in microbial ecology, and is very interpretable, this index is not recommended for statistical ordination. The primary reason being that Bray-Curtis does not maintain the $\textit{Triangle Inequality}$, a mathematical principle which essentially ensures that the shortest distance between any two points is a straight line. This is important, because unless it is true visualizing multiple pairwise distances at once will be visually misleading, as points visually further apart from each other may actually not have more distance than points which are more neighboring. 
 ```{r Implementing NMDS}
 ## Start by selecting your favorite distance metric, then you can either calculate it using observed values or statistically estimate it using a package like DivNet (from Willis and Martin 2018) which supports euclidean distance and bray-curtis dissimilarity. For NMDS, however, a true metric is required, because the goal of the NMDS optimization problem is to conserve pairwise distances, and BC dissimilarity does not maintain the triangle inequality, so pairwise distances are not necessarily mutually informative. Therefore, we will estimate euclidean distance using original # of read counts per DivNet's instructions
 # this will take forever unless we tax_glom so that'll be a little work on my part
@@ -254,3 +254,5 @@ index_frame %>%
   ylab('C-H Stat') +
   xlab('Number Clusters')
 ```
+## How do I interpret these indices?
+The goal of the problem

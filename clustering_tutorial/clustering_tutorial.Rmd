@@ -255,4 +255,11 @@ index_frame %>%
   xlab('Number Clusters')
 ```
 ## How do I interpret these indices?
-The goal of the problem
+The goal of the problem - We want to cluster which OTUs have similar patterns in terms of their temporal dynamics.
+Question: I don't know how many clusters I should partition my OTUs into, and I also don't know which algorithm to use to do the clustering?
+Solution: Decide what algorithms you want to try (we are trying hierarchical and k-meds), then cluster your OTUs into different numbers of clusters (we are trying 2,3,..,10). Now we compare all of these runs (total is 9 cluster numbers*2 algorithms= 18 runs) to see which one is most parsimonious with the data.
+Question: How do I know which run is the most parsimonious with the data?
+Solution: We can compare a selection of indices which summarize the quality of any particular clustering of some data. The indices we're selecting in this problem are (1) SSE (sum of squared errors), (2) CH (the calinski-harabasz index), (3) silhouette profiles. What are those?
+SSE: This is the same as squared errors in lots of other modeling applications (such as regression). The smaller this value is, the better, but also this index automatically becomes smaller as the number of clusters increases, so we use a heuristic called looking for the "elbow" in SSE across numbers of clusters. (more details)
+CH: This index is related to the ratio of between cluster differences to within cluster differences, so the higher it is, the more similar the time series of OTUs within clusters are relative to those OTUs in other clusters. We want a high value for the CH index.
+Silhouette Width: This index is unique compared to the other two because it is not a single number summary of the whole run, but rather a value calculated for every OTU that generates a profile. For each OTU, the silhouette width is defined as the difference between that signal's distance to  its nearest out-of-cluster OTU and its furthest in-cluster OTU dived by the larger of those. Therefore, if a silhouette width is negative, that means there is some other OTU that is in a different cluster that is more similar to that OTU than another OTU in its cluster (ie, clusters are diffuse). The closer that value is to 1 the more confidently that OTU belongs in its assigned cluster. This can be summarized by averaging over all OTUs for a general sense of whether the clusters are overall very strong or weaker. 

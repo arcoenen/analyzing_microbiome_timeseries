@@ -7,15 +7,15 @@ sig = 0.05; % significance threshold
 [sigy, sigx] = find(pval<sig);
 
 % colormap
-load('redbluecmap2','redbluecmap2');
+load('redbluecmap','redbluecmap');
 
 N = size(rho,1);
 
 imagesc(rho,[-1 +1]);
-colormap(gca,flip(redbluecmap2));
+colormap(gca,flip(redbluecmap));
 colorbar();
 hold on
-plot(sigx,sigy,'k*');
+plot(sigx,sigy,'k*','MarkerSize',4);
 hold off;
 if ~exist('flag_labels','var')
     set(gca,'XTick',1:N,'YTick',1:N);

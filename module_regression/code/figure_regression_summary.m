@@ -5,6 +5,7 @@ tmpdir = dir('data_mat/reg*');
 fig = figure();
 depthID = 1;
 load(sprintf('data_mat/%s',tmpdir(depthID).name));
+tmp_beta_label = {sprintf('Regression on X_{res}'),sprintf('Regression on X_{res}\nwith L1 norm')};
 k = [2 4];
 for kk = 1:length(k)
     subplot(1,2,kk);
@@ -12,8 +13,9 @@ for kk = 1:length(k)
     tmpim.AlphaData = abs(beta{k(kk)})>betafrac_thresh;
     colormap(flip(redbluecmap()));
     set(gca,'XTickLabel',[],'YTickLabel',[]);
-    colorbar();
-    title(beta_label{k(kk)});
+    cbar = colorbar();
+    cbar.Label.String = 'regression coefficient';
+    title(tmp_beta_label{kk});
 end
 fig.Position(3:4) = fig.Position(3:4).*[1 0.5];
 print('figures/manuscript/aloha3a','-dpng');
@@ -30,10 +32,14 @@ for depthID = 1:length(tmpdir)
     bar(betafrac','stacked');
     set(gca,'XTickLabel',beta_label,'XTickLabelRotation',90);
     ylabel('fraction of pairs');
-    %legend({'negative','positive'});
     title(sprintf('depth %dm',depth(depthID)));
     set(gca,'FontSize',12);
 end
+
+% set legend manually (......)
+legend({'negative','positive'},'Location','EastOutside');
+set(gca,'Position',[0.5570 0.2302 0.1419 0.2181]);
+
 fig.Position(3:4) = fig.Position(3:4).*[1.75 1.25];
 print('figures/regression/summary_posneg','-dpng');
 print('figures/manuscript/aloha3b','-dpng');

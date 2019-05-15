@@ -18,7 +18,7 @@ for kk = 1:length(k)
     title(tmp_beta_label{kk});
 end
 fig.Position(3:4) = fig.Position(3:4).*[1 0.5];
-print('figures/manuscript/aloha3a','-dpng');
+print_manuscript_fig('aloha3a');
 
 %%
 
@@ -42,4 +42,4 @@ set(gca,'Position',[0.5570 0.2302 0.1419 0.2181]);
 
 fig.Position(3:4) = fig.Position(3:4).*[1.75 1.25];
 print('figures/regression/summary_posneg','-dpng');
-print('figures/manuscript/aloha3b','-dpng');
+print_manuscript_fig('aloha3b');

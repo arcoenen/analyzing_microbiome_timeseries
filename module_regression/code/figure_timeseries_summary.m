@@ -50,4 +50,4 @@ end
 % print
 fig.Position(3:4) = fig.Position(3:4).*[3 1.5];
 print('figures/timeseries/summary','-dpng');
-print('figures/manuscript/aloha1','-dpng');
+print_manuscript_fig('aloha1');

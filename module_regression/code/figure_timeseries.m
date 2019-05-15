@@ -11,10 +11,10 @@ for k = 1:length(tmpdir)
 
 	% get rid of nans so that area plots do not have gaps
     if ~exist('nanID','var')
-        nanID = sum(isnan(X0))<length(contigID);
+        nanID = sum(isnan(X0))==length(contigID);
     end
-    tmpt = t(nanID);
-    tmpX = X0(:,nanID)';
+    tmpt = t(~nanID);
+    tmpX = X0(:,~nanID)';
 
     % sort so that most abundant are on bottom
     [~,tmpID] = sort(sum(tmpX,'omitnan'),'descend');
@@ -24,7 +24,7 @@ for k = 1:length(tmpdir)
     if mode_flag==0
         area(tmpt,tmpX);
         hold on; % mark missing samples
-        plot([t(~nanID) t(~nanID)]',repmat([0 1],[length(t(~nanID)) 1])','w--','LineWidth',1.5);
+        plot([t(nanID) t(nanID)]',repmat([0 1],[length(t(nanID)) 1])','w--','LineWidth',1.5);
         hold off;
     elseif mode_flag==1
         bar(tmpt,tmpX,1,'stacked');

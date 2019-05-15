@@ -41,8 +41,8 @@ for k = 1:length(tmpdir)
     ylabel('relative abundance');
     ylim([0 1]);
     xlim([tmpt(1) tmpt(end)]);
-    set(gca,'XTick',t,'XTickLabel',string(t,'MMM-dd-yy'),'XTickLabelRotation',90);
-    set(gca,'FontSize',12);
+    set(gca,'XTick',t,'XTickLabel',string(t,'MMM-d-yy'),'XTickLabelRotation',90);
+    set(gca,'FontSize',16);
 
 end
 %clear k tmp*;
@@ -50,4 +50,4 @@ end
 % print
 fig.Position(3:4) = fig.Position(3:4).*[3 1.5];
 print('figures/timeseries/summary','-dpng');
-print('figures/paper_figures/aloha1','-dpng');
+print('figures/manuscript/aloha1','-dpng');

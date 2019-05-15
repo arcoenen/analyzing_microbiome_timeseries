@@ -16,10 +16,11 @@ for depthID = 1:length(tmpdir)
     xlabel('lag');
     ylabel('PAC');
     title(sprintf('depth %dm',depth(depthID)));
+    set(gca,'FontSize',12);
 end
 fig.Position(3) = fig.Position(3)*1.75;
 print('figures/partialautocorrelation/summary_value','-dpng');
-print('figures/paper_figures/aloha2b','-dpng');
+print('figures/manuscript/aloha2b','-dpng');
 
 % how many contigs show autocorrelation? (by depth)
 fig = figure();
@@ -33,10 +34,11 @@ for depthID = 1:length(tmpdir)
     xlabel('lag');
     ylabel('fraction of contigs');
     title(sprintf('depth %dm',depth(depthID)));
+    set(gca,'FontSize',12);
 end
 fig.Position(3) = fig.Position(3)*1.75;
 print('figures/partialautocorrelation/summary_fraction','-dpng');
-print('figures/paper_figures/aloha2a','-dpng');
+print('figures/manuscript/aloha2a','-dpng');
 
 % omit pacs>1 and pacs<thresh
 function pac = apply_threshold(pac,thresh)

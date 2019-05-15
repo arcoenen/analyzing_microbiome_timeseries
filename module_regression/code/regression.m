@@ -13,7 +13,7 @@ for depthID = 1:length(tmpdir_AR)
 
     % simple linear regression using pinv()
     k = 2;
-    beta_label{k} = 'simple on X_{res}';
+    beta_label{k} = sprintf('simple on X_{res}');
     tmpX = [ones(length(tres),1) X0res']; % add constant term
     beta{k} = pinv(tmpX)*X0res';
     clear tmpX;
@@ -81,3 +81,5 @@ for depthID = 1:length(tmpdir_AR)
 
     
 end
+
+fprintf('regression analysis complete for all depths\n');

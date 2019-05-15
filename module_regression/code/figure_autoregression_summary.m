@@ -21,7 +21,6 @@ for depthID = 1:length(tmpdir)
 end
 fig.Position(3) = fig.Position(3)*1.75;
 print('figures/autoregression/summary_coefficients','-dpng');
-print('figures/paper_figures/aloha3a','-dpng');
 
 % residual timeseries
 fig = figure();
@@ -36,4 +35,3 @@ for depthID = 1:length(tmpdir)
 end
 fig.Position(3) = fig.Position(3)*1.75;
 print('figures/autoregression/summary_residuals','-dpng');
-print('figures/paper_figures/aloha3b','-dpng');

@@ -35,3 +35,4 @@ figure_autoregression_summary;
 
 regression;
 figure_regression;
+figure_regression_summary;

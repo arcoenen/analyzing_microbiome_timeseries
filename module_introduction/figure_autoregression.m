@@ -35,4 +35,4 @@ set(gca,'FontSize',fs);
 
 fig.Units = 'inches';
 fig.Position(3:4) = [6 4];
-print('figure_autoregression','-dpng');
+print('figure_autoregression','-djpeg','-r300');
